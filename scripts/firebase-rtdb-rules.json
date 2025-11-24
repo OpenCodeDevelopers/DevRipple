@@ -7,6 +7,11 @@
         ".write": "auth.uid === $uid"
       }
     },
+    "userGroups": {
+      "$uid": {
+        ".write": "auth.uid === $uid"
+      }
+    },
     "groups": {
       "$groupId": {
         ".read": "auth != null",

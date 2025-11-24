@@ -8,12 +8,12 @@ import "./globals.css";
 import { AppShell } from "@/components/providers/app-shell";
 import { Suspense } from "react";
 // 1. 🛑 IMPORT THE TOASTER COMPONENT
-import { Toaster } from "@/components/ui/toaster"; 
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
-  title: "DevRipple",
-  description: "Created By Priyanshu Singh",
-  generator: "DevRipple.app",
+  title: "OpenCodeDev",
+  description: "OpenCodeDeveloper society of nitkkr",
+  // generator: "DevRipple.app",
   icons: {
     icon: "/favicon.svg",
   },
@@ -33,12 +33,12 @@ export default function RootLayout({
             {/* <ThemeProvider> */}
             {children}
             {/* </ThemeProvider> */}
-            </AppShell>
+          </AppShell>
         </Suspense>
-        
+
         {/* 2. ✅ RENDER THE TOASTER COMPONENT */}
-        <Toaster /> 
-        
+        <Toaster />
+
         <Analytics />
       </body>
     </html>

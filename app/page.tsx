@@ -1,7 +1,15 @@
 import React from "react";
 // Assuming this is a Next.js environment for the prompt's context
-import Link from "next/link"; 
-import { Code, Users, ThumbsUp, ChevronRight, Zap, GraduationCap, MessageSquare } from "lucide-react";
+import Link from "next/link";
+import {
+  Code,
+  Users,
+  ThumbsUp,
+  ChevronRight,
+  Zap,
+  GraduationCap,
+  MessageSquare,
+} from "lucide-react";
 
 // --- Type Definitions for Props ---
 
@@ -35,7 +43,7 @@ const Feature: React.FC<FeatureProps> = ({ title, desc, Icon }) => {
       <p className="text-muted-foreground text-base leading-relaxed">{desc}</p>
     </div>
   );
-}
+};
 
 // Button-like component to simulate shadcn Button and Next.js Link styling
 
@@ -53,10 +61,14 @@ const CallToActionButton: React.FC<CallToActionButtonProps> = ({
   const secondaryClasses =
     "bg-secondary text-secondary-foreground shadow-md hover:bg-secondary/80 border border-input";
 
-  const variantClasses = variant === "default" ? defaultClasses : secondaryClasses;
+  const variantClasses =
+    variant === "default" ? defaultClasses : secondaryClasses;
 
   return (
-    <Link href={href} className={`${baseClasses} ${variantClasses} ${className}`}>
+    <Link
+      href={href}
+      className={`${baseClasses} ${variantClasses} ${className}`}
+    >
       {children}
     </Link>
   );
@@ -64,31 +76,50 @@ const CallToActionButton: React.FC<CallToActionButtonProps> = ({
 
 // Main navigation/header component
 const Header: React.FC = () => {
-    return (
-        <header className="py-4 border-b border-border/40 sticky top-0 z-10 bg-background/90 backdrop-blur-sm">
-            <div className="mx-auto max-w-5xl px-4 flex justify-between items-center">
-                <h1 className="text-2xl font-bold tracking-tighter text-foreground">
-                    Dev<span className="text-primary">Ripple</span>
-                </h1>
-                <nav className="hidden sm:flex space-x-6 text-sm">
-                    {/* Use standard <a> for section links to avoid full page load */}
-                    <a href="#features" className="text-muted-foreground hover:text-primary transition-colors">Features</a>
-                    <a href="#workflow" className="text-muted-foreground hover:text-primary transition-colors">How It Works</a>
-                    <a href="#cta" className="text-muted-foreground hover:text-primary transition-colors">Join</a>
-                </nav>
-                <CallToActionButton href="/dashboard" variant="secondary" className="h-9 px-4 py-2">
-                    Go to Dashboard
-                </CallToActionButton>
-            </div>
-        </header>
-    );
-}
+  return (
+    <header className="py-4 border-b border-border/40 sticky top-0 z-10 bg-background/90 backdrop-blur-sm">
+      <div className="mx-auto max-w-5xl px-4 flex justify-between items-center">
+        <h1 className="text-2xl font-bold tracking-tighter text-foreground">
+          Dev<span className="text-primary">Ripple</span>
+        </h1>
+        <nav className="hidden sm:flex space-x-6 text-sm">
+          {/* Use standard <a> for section links to avoid full page load */}
+          <a
+            href="#features"
+            className="text-muted-foreground hover:text-primary transition-colors"
+          >
+            Features
+          </a>
+          <a
+            href="#workflow"
+            className="text-muted-foreground hover:text-primary transition-colors"
+          >
+            How It Works
+          </a>
+          <a
+            href="#cta"
+            className="text-muted-foreground hover:text-primary transition-colors"
+          >
+            Join
+          </a>
+        </nav>
+        <CallToActionButton
+          href="/dashboard"
+          variant="secondary"
+          className="h-9 px-4 py-2"
+        >
+          Go to Dashboard
+        </CallToActionButton>
+      </div>
+    </header>
+  );
+};
 
 // CSS string for colors and font import
 const customCss = `
   /* Load Inter font (using a web-safe sans-serif fallback) */
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-  
+
 
 `;
 
@@ -96,17 +127,16 @@ const customCss = `
 const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
-      
       {/* FIX: Hydration Error
         The <style> block is fixed by using dangerouslySetInnerHTML, which
-        tells React not to manage its content during hydration, preventing 
-        the server/client content mismatch (due to different string 
+        tells React not to manage its content during hydration, preventing
+        the server/client content mismatch (due to different string
         serialization/escaping).
       */}
       <style dangerouslySetInnerHTML={{ __html: customCss }} />
-      
-      {/* NOTE: In a real project, Tailwind CSS is imported via a global CSS file, 
-          not a <script> tag. The script tag is left as it was in the original 
+
+      {/* NOTE: In a real project, Tailwind CSS is imported via a global CSS file,
+          not a <script> tag. The script tag is left as it was in the original
           code for simulation purposes, though it has no effect in a standard
           Next.js/TSX environment. */}
       {/* <script src="https://cdn.tailwindcss.com"></script> */}
@@ -117,22 +147,27 @@ const HomePage: React.FC = () => {
         {/* === 1. Hero Section === */}
         <section className="text-center mb-20 md:mb-32">
           <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium mb-5 bg-muted text-muted-foreground border-primary/20">
-              <Zap className="w-4 h-4 mr-2 text-primary" />
-              Collaboration is the fastest path to mastery.
+            <Zap className="w-4 h-4 mr-2 text-primary" />
+            Collaboration is the fastest path to mastery.
           </div>
           <h1 className="text-pretty text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight mb-6">
             Peer-to-Peer <span className="text-primary">Coding Mastery</span>
           </h1>
           <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground md:text-xl">
-            DevRipple is the platform for serious coders to collaborate, share knowledge, and <span className="font-semibold font-sans italic">level up through daily problem-solving</span> and rigorous, inline code reviews.
+            OpenCodeDev is the platform for serious coders to collaborate, share
+            knowledge, and{" "}
+            <span className="font-semibold font-sans italic">
+              level up through daily problem-solving
+            </span>{" "}
+            and rigorous, inline code reviews.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <CallToActionButton href="/dashboard">
-                Start Collaborating <ChevronRight className="w-5 h-5 ml-2" />
+              Start Collaborating <ChevronRight className="w-5 h-5 ml-2" />
             </CallToActionButton>
             <CallToActionButton href="#features" variant="secondary">
-                Explore Features
+              Explore Features
             </CallToActionButton>
           </div>
         </section>
@@ -140,7 +175,7 @@ const HomePage: React.FC = () => {
         {/* --- 2. Core Features Grid Section --- */}
         <section id="features" className="mb-20 md:mb-32">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-tight">
-            How DevRipple Empowers You
+            How OpenCodeDev Empowers You
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
             <Feature
@@ -162,71 +197,90 @@ const HomePage: React.FC = () => {
         </section>
 
         {/* --- 3. Workflow Highlight Section --- */}
-        <section id="workflow" className="mb-20 md:mb-32 flex flex-col items-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-tight">
-                Our Simple, Effective Workflow
-            </h2>
-            <div className="w-full grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-                {/* Step 1 */}
-                <div className="text-center p-6 border-2 border-primary/10 rounded-xl bg-muted/30 shadow-sm">
-                    <div className="text-3xl font-bold text-primary mb-2">1.</div>
-                    <Users className="w-8 h-8 mx-auto mb-3 text-primary/80" />
-                    <h4 className="font-semibold mb-1">Join a Group</h4>
-                    <p className="text-sm text-muted-foreground">Find or create a group for your favorite language or topic.</p>
-                </div>
-                {/* Step 2 */}
-                <div className="text-center p-6 border-2 border-primary/10 rounded-xl bg-muted/30 shadow-sm">
-                    <div className="text-3xl font-bold text-primary mb-2">2.</div>
-                    <Code className="w-8 h-8 mx-auto mb-3 text-primary/80" />
-                    <h4 className="font-semibold mb-1">Solve the Daily Problem</h4>
-                    <p className="text-sm text-muted-foreground">Tackle the 'Today’s Question' and submit your detailed solution.</p>
-                </div>
-                {/* Step 3 */}
-                <div className="text-center p-6 border-2 border-primary/10 rounded-xl bg-muted/30 shadow-sm">
-                    <div className="text-3xl font-bold text-primary mb-2">3.</div>
-                    <MessageSquare className="w-8 h-8 mx-auto mb-3 text-primary/80" />
-                    <h4 className="font-semibold mb-1">Review Peers' Code</h4>
-                    <p className="text-sm text-muted-foreground">Leave specific, constructive feedback directly on lines of code.</p>
-                </div>
-                {/* Step 4 */}
-                <div className="text-center p-6 border-2 border-primary/10 rounded-xl bg-muted/30 shadow-sm">
-                    <div className="text-3xl font-bold text-primary mb-2">4.</div>
-                    <Zap className="w-8 h-8 mx-auto mb-3 text-primary/80" />
-                    <h4 className="font-semibold mb-1">Grow Exponentially</h4>
-                    <p className="text-sm text-muted-foreground">Absorb diverse solutions and critiques to accelerate your learning.</p>
-                </div>
+        <section
+          id="workflow"
+          className="mb-20 md:mb-32 flex flex-col items-center"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-tight">
+            Our Simple, Effective Workflow
+          </h2>
+          <div className="w-full grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {/* Step 1 */}
+            <div className="text-center p-6 border-2 border-primary/10 rounded-xl bg-muted/30 shadow-sm">
+              <div className="text-3xl font-bold text-primary mb-2">1.</div>
+              <Users className="w-8 h-8 mx-auto mb-3 text-primary/80" />
+              <h4 className="font-semibold mb-1">Join a Group</h4>
+              <p className="text-sm text-muted-foreground">
+                Find or create a group for your favorite language or topic.
+              </p>
             </div>
+            {/* Step 2 */}
+            <div className="text-center p-6 border-2 border-primary/10 rounded-xl bg-muted/30 shadow-sm">
+              <div className="text-3xl font-bold text-primary mb-2">2.</div>
+              <Code className="w-8 h-8 mx-auto mb-3 text-primary/80" />
+              <h4 className="font-semibold mb-1">Solve the Daily Problem</h4>
+              <p className="text-sm text-muted-foreground">
+                Tackle the 'Today’s Question' and submit your detailed solution.
+              </p>
+            </div>
+            {/* Step 3 */}
+            <div className="text-center p-6 border-2 border-primary/10 rounded-xl bg-muted/30 shadow-sm">
+              <div className="text-3xl font-bold text-primary mb-2">3.</div>
+              <MessageSquare className="w-8 h-8 mx-auto mb-3 text-primary/80" />
+              <h4 className="font-semibold mb-1">Review Peers' Code</h4>
+              <p className="text-sm text-muted-foreground">
+                Leave specific, constructive feedback directly on lines of code.
+              </p>
+            </div>
+            {/* Step 4 */}
+            <div className="text-center p-6 border-2 border-primary/10 rounded-xl bg-muted/30 shadow-sm">
+              <div className="text-3xl font-bold text-primary mb-2">4.</div>
+              <Zap className="w-8 h-8 mx-auto mb-3 text-primary/80" />
+              <h4 className="font-semibold mb-1">Grow Exponentially</h4>
+              <p className="text-sm text-muted-foreground">
+                Absorb diverse solutions and critiques to accelerate your
+                learning.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* --- 4. Final CTA Section --- */}
-        <section id="cta" className="text-center p-12 md:p-16 bg-card border border-primary/10 rounded-2xl shadow-2xl shadow-primary/10">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Ready to Join the Ripple?
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8">
-                Stop coding in isolation. Start growing with a community that values quality, critique, and continuous improvement.
-            </p>
-            <CallToActionButton href="/dashboard">
-                Get Started Today <ChevronRight className="w-5 h-5 ml-2" />
-            </CallToActionButton>
+        <section
+          id="cta"
+          className="text-center p-12 md:p-16 bg-card border border-primary/10 rounded-2xl shadow-2xl shadow-primary/10"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Ready to Join the Ripple?
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8">
+            Stop coding in isolation. Start growing with a community that values
+            quality, critique, and continuous improvement.
+          </p>
+          <CallToActionButton href="/dashboard">
+            Get Started Today <ChevronRight className="w-5 h-5 ml-2" />
+          </CallToActionButton>
         </section>
-
       </main>
 
       {/* --- Footer --- */}
       <footer className="mt-24 py-10 border-t border-border/40 bg-background text-foreground">
-  <div className="mx-auto max-w-5xl px-4 text-center text-sm text-muted-foreground">
-    <p className="mb-2">
-      &copy; {new Date().getFullYear()} <span className="font-semibold text-primary">DevRipple</span>. All rights reserved.
-    </p>
-    <div className="space-x-2 text-xs text-muted-foreground">
-      <span>Created By</span>
-      <span className="text-blue-600 font-medium">💖 Priyanshu Singh</span>
+        <div className="mx-auto max-w-5xl px-4 text-center text-sm text-muted-foreground">
+          <p className="mb-2">
+            &copy; {new Date().getFullYear()}{" "}
+            <span className="font-semibold text-primary">DevRipple</span>. All
+            rights reserved.
+          </p>
+          <div className="space-x-2 text-xs text-muted-foreground">
+            <span>Created By</span>
+            <span className="text-blue-600 font-medium">
+              💖 Priyanshu Singh
+            </span>
+          </div>
+        </div>
+      </footer>
     </div>
-  </div>
-</footer>
-    </div>
-  )
-}
+  );
+};
 
 export default HomePage;

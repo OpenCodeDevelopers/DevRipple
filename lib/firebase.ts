@@ -1,9 +1,9 @@
-import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app"
-import { getAuth, GoogleAuthProvider } from "firebase/auth"
-import { getDatabase } from "firebase/database"
+import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 import { isSupported, getAnalytics } from "firebase/analytics";
 
-let app: FirebaseApp
+let app: FirebaseApp;
 
 export function getFirebaseApp() {
   if (!app) {
@@ -16,20 +16,28 @@ export function getFirebaseApp() {
       messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
       appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
       measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
-    }
-    if (!config.apiKey || !config.authDomain || !config.databaseURL || !config.projectId || !config.appId) {
+    };
+    if (
+      !config.apiKey ||
+      !config.authDomain ||
+      !config.databaseURL ||
+      !config.projectId ||
+      !config.appId
+    ) {
       // Fail fast in preview to indicate missing configuration; UI still renders
-      console.warn("[DevRipple] Missing Firebase env vars. Add NEXT_PUBLIC_FIREBASE_* in Project Settings.")
+      console.warn(
+        "[OpenCodeDev] Missing Firebase env vars. Add NEXT_PUBLIC_FIREBASE_* in Project Settings.",
+      );
     }
-    app = getApps().length ? getApp() : initializeApp(config)
+    app = getApps().length ? getApp() : initializeApp(config);
   }
-  return app
+  return app;
 }
 
-export const firebaseApp = getFirebaseApp()
-export const auth = getAuth(firebaseApp)
-export const googleProvider = new GoogleAuthProvider()
-export const db = getDatabase(firebaseApp)
+export const firebaseApp = getFirebaseApp();
+export const auth = getAuth(firebaseApp);
+export const googleProvider = new GoogleAuthProvider();
+export const db = getDatabase(firebaseApp);
 
 if (typeof window !== "undefined") {
   isSupported().then((supported) => {
